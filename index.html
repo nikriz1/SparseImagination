@@ -220,17 +220,42 @@
         <br>
 
         <h3 class="title is-4">2. Real-World Experiments</h3>
+        
         <div class="content has-text-justified">
           <p>
             We validate our method on a real-world SO-ARM101 robot for <strong>Pick & Place</strong> and <strong>Drawer</strong> tasks.
-            VILA achieves significantly higher success rates on unseen views compared to baselines.
+          </p>
+        </div>
+
+        <h4 class="title is-5">Real-World Unseen View Setup</h4>
+        <div class="content has-text-justified">
+           <p>
+             We evaluate the policy on <strong>unseen views</strong> that differ from the training viewpoints. 
+             The figure below visualizes these held-out viewpoints used for evaluation.
+           </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-10 has-text-centered">
+            <img src="./static/images/real_world_setup.png" 
+                 alt="Real-World Unseen Views" 
+                 style="width:100%; border: 1px solid #ddd; padding: 5px;"
+                 onerror="this.src='https://via.placeholder.com/800x400?text=Figure:+Real-World+View+Setup';">
+             <p class="is-size-6 has-text-centered">
+               <em>Overview of the unseen camera viewpoints for Pick & Place (Top) and Drawer (Bottom) tasks.</em>
+             </p>
+          </div>
+        </div>
+        <br>
+
+        <h4 class="title is-5">Qualitative Results</h4>
+        <div class="content has-text-justified">
+          <p>
+            VILA achieves significantly higher success rates on these unseen views compared to baselines.
+            The following demos show the robot's performance in these challenging viewpoints.
           </p>
         </div>
         
-        <div class="content has-text-centered">
-             <p><strong>Real-World Demos (Unseen Views)</strong></p>
-        </div>
-        <div id="results-carousel" class="carousel results-carousel">
+        <div id="real-results-carousel" class="carousel results-carousel">
           <div class="item item-real1">
             <img src="./static/images/real_v1.png" alt="Real World View 1" style="width:100%;">
           </div>
@@ -264,18 +289,119 @@
         <h3 class="title is-4">4. Representation Analysis</h3>
         <div class="content has-text-justified">
           <p>
-            UMAP visualizations show that VILA representations are more uniformly mixed across views compared to baselines, 
-            indicating stronger view invariance.
+            We analyze the quality of learned representations using both quantitative metrics (Entropy) and qualitative visualizations (UMAP).
+            Our analysis covers two aspects: <strong>View Invariance</strong> (how well views are mixed) and <strong>Action Semantics</strong> (how well dynamics are captured).
+          </p>
+        </div>
+
+        <h4 class="title is-5">Quantitative: View & Action Entropy</h4>
+        <div class="content has-text-justified">
+          <p>
+            We measure <strong>View Entropy</strong> (higher is better &uarr;) and <strong>Action Entropy</strong> (lower is better &darr;) on the Lift task.
+            VILA achieves high view entropy and low action entropy, indicating it learns representations that are both view-invariant and dynamics-aware.
           </p>
         </div>
         <div class="columns is-centered">
-           <div class="column is-8">
-             <img src="./static/images/umap_views_after.png" 
-                  alt="UMAP Visualization"
-                  style="width:100%;"
-                  onerror="this.src='https://via.placeholder.com/600x400?text=UMAP+Visualization';">
-           </div>
+          <div class="column is-8">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="font-size: 0.9em;">
+              <thead>
+                <tr class="has-background-light">
+                  <th rowspan="2" style="vertical-align: middle;">Model</th>
+                  <th colspan="2" class="has-text-centered">View Entropy (&uarr;)</th>
+                  <th rowspan="2" style="vertical-align: middle; text-align: center;">Action Entropy (&darr;)</th>
+                </tr>
+                <tr class="has-background-light">
+                  <th class="has-text-centered">Seen</th>
+                  <th class="has-text-centered">Unseen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background-color: #f0f0f0;">
+                  <td colspan="4"><strong>Before Policy Training</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>VILA (Ours)</strong></td>
+                  <td class="has-text-centered"><strong>2.757</strong></td>
+                  <td class="has-text-centered"><strong>2.495</strong></td>
+                  <td class="has-text-centered"><strong>0.934</strong></td>
+                </tr>
+                <tr>
+                  <td>CLASS</td>
+                  <td class="has-text-centered">2.641</td>
+                  <td class="has-text-centered">2.159</td>
+                  <td class="has-text-centered">1.041</td>
+                </tr>
+                
+                <tr style="background-color: #f0f0f0;">
+                  <td colspan="4"><strong>After Policy Training (Fine-Tuned)</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>VILA (Ours)</strong></td>
+                  <td class="has-text-centered"><strong>2.803</strong></td>
+                  <td class="has-text-centered"><strong>2.548</strong></td>
+                  <td class="has-text-centered"><strong>0.829</strong></td>
+                </tr>
+                <tr>
+                  <td>Vanilla</td>
+                  <td class="has-text-centered">2.707</td>
+                  <td class="has-text-centered">2.121</td>
+                  <td class="has-text-centered">1.445</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        <br>
+
+        <h4 class="title is-5">Qualitative: UMAP Visualizations</h4>
+        <div class="content has-text-justified">
+          <p>
+            We visualize the embedding space using UMAP. 
+            The <strong>View UMAP</strong> is colored by camera ID (to check invariance), and the <strong>Action UMAP</strong> is colored by ground-truth action clusters (to check dynamics structure).
+          </p>
+        </div>
+
+        <h5 class="title is-6 has-text-centered">View Invariance (Colored by View ID)</h5>
+        <div class="columns is-centered">
+          <div class="column is-5 has-text-centered">
+            <img src="./static/images/umap_views_before.png" 
+                 alt="View UMAP Before"
+                 style="border: 1px solid #eee;"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=View+UMAP+(Before)';">
+            <p>Before Policy Training</p> 
+          </div>
+          <div class="column is-5 has-text-centered">
+            <img src="./static/images/umap_views_after.png" 
+                 alt="View UMAP After"
+                 style="border: 1px solid #eee;"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=View+UMAP+(After)';">
+            <p>After Policy Training</p>
+          </div>
+        </div>
+        <p class="is-size-7 has-text-centered" style="margin-bottom: 20px;">
+          <em>Colors represent different camera views. VILA shows highly mixed distributions (view invariance) in both stages.</em>
+        </p>
+
+        <h5 class="title is-6 has-text-centered">Action Semantics (Colored by Action Cluster)</h5>
+        <div class="columns is-centered">
+          <div class="column is-5 has-text-centered">
+            <img src="./static/images/lift_act_umap_before.png" 
+                 alt="Action UMAP Before"
+                 style="border: 1px solid #eee;"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=Action+UMAP+(Before)';">
+            <p>Before Policy Training</p>
+          </div>
+          <div class="column is-5 has-text-centered">
+            <img src="./static/images/lift_act_umap_after.png" 
+                 alt="Action UMAP After"
+                 style="border: 1px solid #eee;"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=Action+UMAP+(After)';">
+            <p>After Policy Training</p>
+          </div>
+        </div>
+        <p class="is-size-7 has-text-centered">
+          <em>Colors represent ground-truth action clusters. VILA maintains clear cluster structures (dynamics awareness).</em>
+        </p>
 
       </div>
     </div>
