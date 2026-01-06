@@ -18,8 +18,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <!-- carousel/slider CSS removed -->
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
@@ -27,16 +26,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-
-  <!--
-    IMPORTANT:
-    - Remove/disable carousel initialization from ./static/js/index.js to prevent double init.
-    - Keep index.js only if it does NOT call bulmaCarousel.attach(...) anywhere.
-    - If you're unsure, comment it out and re-add later.
-  -->
-  <!-- <script src="./static/js/index.js"></script> -->
+  <!-- carousel/slider JS removed -->
 
   <style>
     /* =========================
@@ -49,48 +39,23 @@
     .container.is-max-desktop { max-width: 1152px; }
 
     /* =========================
-       FIX 1) CAROUSEL "INFINITE REPEAT" / CLONE LEAKING
+       SIMULATION RESULTS - simple card layout
        ========================= */
-    /* Clip every possible wrapper bulma-carousel may create (names vary by version) */
-    #sim-results-carousel,
-    #sim-results-carousel .carousel-container,
-    #sim-results-carousel .carousel-viewport,
-    #sim-results-carousel .carousel-track,
-    #sim-results-carousel .carousel-wrapper {
-      overflow: hidden !important;
-      max-width: 100% !important;
-      width: 100% !important;
-      display: block !important;
-    }
-
-    /* Ensure each slide is full width (prevents horizontal tiling) */
-    #sim-results-carousel .carousel-item,
-    #sim-results-carousel .item {
-      width: 100% !important;
-      box-sizing: border-box;
-    }
-
-    /* Keep columns from over-expanding horizontally */
-    #sim-results-carousel .columns {
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    /* Optional: keep the slide card nicely boxed */
-    #sim-results-carousel .item {
-      border: 1px solid #d0d0d0;
-      border-radius: 16px;
-      padding: 16px 16px 10px;
-      background: #fff;
+    .sim-task-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      background: #fafafa;
     }
 
     /* Video cards: consistent rounding + size cap */
     .sim-video {
       width: 100%;
-      max-width: 260px;
+      max-width: 220px;
       border-radius: 8px;
       display: block;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       margin: 0 auto;
     }
@@ -117,13 +82,13 @@
     /* Real-world stacked videos: hard cap container width */
     .real-video-container {
       width: 100%;
-      max-width: 260px;
+      max-width: 220px;
       margin: 0 auto;
     }
     .real-video-container video {
       width: 100%;
       display: block;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
     }
 
@@ -250,55 +215,52 @@
 
         <h3 class="title is-4">1. Unseen View Generalization (Simulation)</h3>
 
-        <!-- CAROUSEL -->
-        <div id="sim-results-carousel" class="carousel">
-          <!-- Slide 1 -->
-          <div class="item">
-            <h4 class="title is-5 has-text-centered">Task: Square</h4>
-            <div class="columns is-centered is-multiline">
-              <div class="column is-4-desktop is-12-mobile has-text-centered">
-                <p class="is-size-7"><strong>VILA (Ours)</strong></p>
-                <video class="sim-video" autoplay muted loop playsinline style="border: 2px solid #4CAF50;">
-                  <source src="./static/videos/square_vila_cut.mp4" type="video/mp4">
-                </video>
-              </div>
-              <div class="column is-4-desktop is-12-mobile has-text-centered">
-                <p class="is-size-7">Vanilla</p>
-                <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
-                  <source src="./static/videos/square_vanilla_cut.mp4" type="video/mp4">
-                </video>
-              </div>
-              <div class="column is-4-desktop is-12-mobile has-text-centered">
-                <p class="is-size-7">CLASS</p>
-                <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
-                  <source src="./static/videos/square_class_cut.mp4" type="video/mp4">
-                </video>
-              </div>
+        <!-- Task: Square -->
+        <div class="sim-task-card">
+          <h4 class="title is-5 has-text-centered" style="margin-bottom: 1rem;">Task: Square</h4>
+          <div class="columns is-centered is-multiline is-mobile">
+            <div class="column is-4-desktop is-4-tablet is-12-mobile has-text-centered">
+              <p class="is-size-7"><strong>VILA (Ours)</strong></p>
+              <video class="sim-video" autoplay muted loop playsinline style="border: 2px solid #4CAF50;">
+                <source src="./static/videos/square_vila_cut.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-4-desktop is-4-tablet is-12-mobile has-text-centered">
+              <p class="is-size-7">Vanilla</p>
+              <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
+                <source src="./static/videos/square_vanilla_cut.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-4-desktop is-4-tablet is-12-mobile has-text-centered">
+              <p class="is-size-7">CLASS</p>
+              <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
+                <source src="./static/videos/square_class_cut.mp4" type="video/mp4">
+              </video>
             </div>
           </div>
+        </div>
 
-          <!-- Slide 2 -->
-          <div class="item">
-            <h4 class="title is-5 has-text-centered">Task: Stack Three</h4>
-            <div class="columns is-centered is-multiline">
-              <div class="column is-4-desktop is-12-mobile has-text-centered">
-                <p class="is-size-7"><strong>VILA (Ours)</strong></p>
-                <video class="sim-video" autoplay muted loop playsinline style="border: 2px solid #4CAF50;">
-                  <source src="./static/videos/stackthree_vila_cut.mp4" type="video/mp4">
-                </video>
-              </div>
-              <div class="column is-4-desktop is-12-mobile has-text-centered">
-                <p class="is-size-7">Vanilla</p>
-                <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
-                  <source src="./static/videos/stackthree_vanilla_cut.mp4" type="video/mp4">
-                </video>
-              </div>
-              <div class="column is-4-desktop is-12-mobile has-text-centered">
-                <p class="is-size-7">CLASS</p>
-                <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
-                  <source src="./static/videos/stackthree_class_cut.mp4" type="video/mp4">
-                </video>
-              </div>
+        <!-- Task: Stack Three -->
+        <div class="sim-task-card">
+          <h4 class="title is-5 has-text-centered" style="margin-bottom: 1rem;">Task: Stack Three</h4>
+          <div class="columns is-centered is-multiline is-mobile">
+            <div class="column is-4-desktop is-4-tablet is-12-mobile has-text-centered">
+              <p class="is-size-7"><strong>VILA (Ours)</strong></p>
+              <video class="sim-video" autoplay muted loop playsinline style="border: 2px solid #4CAF50;">
+                <source src="./static/videos/stackthree_vila_cut.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-4-desktop is-4-tablet is-12-mobile has-text-centered">
+              <p class="is-size-7">Vanilla</p>
+              <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
+                <source src="./static/videos/stackthree_vanilla_cut.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-4-desktop is-4-tablet is-12-mobile has-text-centered">
+              <p class="is-size-7">CLASS</p>
+              <video class="sim-video" autoplay muted loop playsinline style="border: 1px solid #ccc;">
+                <source src="./static/videos/stackthree_class_cut.mp4" type="video/mp4">
+              </video>
             </div>
           </div>
         </div>
@@ -414,20 +376,6 @@
         menu.classList.toggle('is-active');
       });
     }
-
-    // Ensure single initialization
-    bulmaCarousel.attach('#sim-results-carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-
-      // Cross-version safety
-      loop: false,
-      infinite: false,
-
-      autoplay: false,
-      pagination: true,
-      navigation: true
-    });
   });
 </script>
 
