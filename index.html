@@ -110,26 +110,6 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="./static/images/fig_main.png" 
-           alt="VILA Overview" 
-           style="width:100%; object-fit: contain;"
-           onerror="this.style.display='none'; document.getElementById('teaser-placeholder').style.display='block';">
-      
-      <div id="teaser-placeholder" style="display:none; text-align:center; padding: 50px; background:#f5f5f5;">
-        <p><strong>[Place Teaser Image Here]</strong><br>Put <code>fig_main.png</code> in <code>./static/images/</code></p>
-      </div>
-
-      <h2 class="subtitle has-text-centered" style="margin-top: 15px;">
-        <strong>VILA Overview.</strong> Our method learns view-invariant latent actions by aligning them using action-aware contrastive learning along with predicting the future.
-      </h2>
-    </div>
-  </div>
-</section>
-
-
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -152,6 +132,24 @@
   </div>
 </section>
 
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/fig_main.png" 
+           alt="VILA Overview" 
+           style="width:100%; object-fit: contain;"
+           onerror="this.style.display='none'; document.getElementById('teaser-placeholder').style.display='block';">
+      
+      <div id="teaser-placeholder" style="display:none; text-align:center; padding: 50px; background:#f5f5f5;">
+        <p><strong>[Place Teaser Image Here]</strong><br>Put <code>fig_main.png</code> in <code>./static/images/</code></p>
+      </div>
+
+      <h2 class="subtitle has-text-centered" style="margin-top: 15px;">
+        <strong>VILA Overview.</strong> Our method learns view-invariant latent actions by aligning them using action-aware contrastive learning along with predicting the future.
+      </h2>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -191,7 +189,6 @@
   </div>
 </section>
 
-
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -220,20 +217,13 @@
         <br>
 
         <h3 class="title is-4">2. Real-World Experiments</h3>
-        
         <div class="content has-text-justified">
           <p>
             We validate our method on a real-world SO-ARM101 robot for <strong>Pick & Place</strong> and <strong>Drawer</strong> tasks.
+            The figure below shows the setup for unseen views used in evaluation.
           </p>
         </div>
 
-        <h4 class="title is-5">Real-World Unseen View Setup</h4>
-        <div class="content has-text-justified">
-           <p>
-             We evaluate the policy on <strong>unseen views</strong> that differ from the training viewpoints. 
-             The figure below visualizes these held-out viewpoints used for evaluation.
-           </p>
-        </div>
         <div class="columns is-centered">
           <div class="column is-10 has-text-centered">
             <img src="./static/images/real_world_setup.png" 
@@ -247,15 +237,70 @@
         </div>
         <br>
 
-        <h4 class="title is-5">Qualitative Results</h4>
         <div class="content has-text-justified">
           <p>
             VILA achieves significantly higher success rates on these unseen views compared to baselines.
-            The following demos show the robot's performance in these challenging viewpoints.
+            The table below summarizes the success rates (%) on real-world tasks.
           </p>
         </div>
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="font-size: 0.9em;">
+              <thead>
+                <tr class="has-background-light">
+                  <th rowspan="2" style="vertical-align: middle;">Model</th>
+                  <th colspan="4" class="has-text-centered">Pick & Place</th>
+                  <th colspan="3" class="has-text-centered">Drawer</th>
+                </tr>
+                <tr class="has-background-light">
+                  <th class="has-text-centered">View 1</th>
+                  <th class="has-text-centered">View 2</th>
+                  <th class="has-text-centered">View 3</th>
+                  <th class="has-text-centered">Avg.</th>
+                  <th class="has-text-centered">View 1</th>
+                  <th class="has-text-centered">View 2</th>
+                  <th class="has-text-centered">Avg.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background-color: #e6f7ff;"> <td><strong>VILA (Ours)</strong></td>
+                  <td class="has-text-centered"><strong>70.00</strong></td>
+                  <td class="has-text-centered"><strong>80.00</strong></td>
+                  <td class="has-text-centered"><strong>40.00</strong></td>
+                  <td class="has-text-centered"><strong>63.33</strong></td>
+                  <td class="has-text-centered"><strong>80.00</strong></td>
+                  <td class="has-text-centered"><strong>90.00</strong></td>
+                  <td class="has-text-centered"><strong>85.00</strong></td>
+                </tr>
+                <tr>
+                  <td>Vanilla</td>
+                  <td class="has-text-centered">0.00</td>
+                  <td class="has-text-centered">0.00</td>
+                  <td class="has-text-centered">10.00</td>
+                  <td class="has-text-centered">3.33</td>
+                  <td class="has-text-centered">0.00</td>
+                  <td class="has-text-centered">0.00</td>
+                  <td class="has-text-centered">0.00</td>
+                </tr>
+                <tr>
+                  <td>CLASS</td>
+                  <td class="has-text-centered">10.00</td>
+                  <td class="has-text-centered">30.00</td>
+                  <td class="has-text-centered">0.00</td>
+                  <td class="has-text-centered">13.33</td>
+                  <td class="has-text-centered">0.00</td>
+                  <td class="has-text-centered">0.00</td>
+                  <td class="has-text-centered">0.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         
-        <div id="real-results-carousel" class="carousel results-carousel">
+        <div class="content has-text-centered">
+             <p><strong>Real-World Demos (Unseen Views)</strong></p>
+        </div>
+        <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-real1">
             <img src="./static/images/real_v1.png" alt="Real World View 1" style="width:100%;">
           </div>
@@ -289,91 +334,24 @@
         <h3 class="title is-4">4. Representation Analysis</h3>
         <div class="content has-text-justified">
           <p>
-            We analyze the quality of learned representations using both quantitative metrics (Entropy) and qualitative visualizations (UMAP).
-            Our analysis covers two aspects: <strong>View Invariance</strong> (how well views are mixed) and <strong>Action Semantics</strong> (how well dynamics are captured).
-          </p>
-        </div>
-
-        <h4 class="title is-5">Quantitative: View & Action Entropy</h4>
-        <div class="content has-text-justified">
-          <p>
-            We measure <strong>View Entropy</strong> (higher is better &uarr;) and <strong>Action Entropy</strong> (lower is better &darr;) on the Lift task.
-            VILA achieves high view entropy and low action entropy, indicating it learns representations that are both view-invariant and dynamics-aware.
-          </p>
-        </div>
-        <div class="columns is-centered">
-          <div class="column is-8">
-            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="font-size: 0.9em;">
-              <thead>
-                <tr class="has-background-light">
-                  <th rowspan="2" style="vertical-align: middle;">Model</th>
-                  <th colspan="2" class="has-text-centered">View Entropy (&uarr;)</th>
-                  <th rowspan="2" style="vertical-align: middle; text-align: center;">Action Entropy (&darr;)</th>
-                </tr>
-                <tr class="has-background-light">
-                  <th class="has-text-centered">Seen</th>
-                  <th class="has-text-centered">Unseen</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="background-color: #f0f0f0;">
-                  <td colspan="4"><strong>Before Policy Training</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>VILA (Ours)</strong></td>
-                  <td class="has-text-centered"><strong>2.757</strong></td>
-                  <td class="has-text-centered"><strong>2.495</strong></td>
-                  <td class="has-text-centered"><strong>0.934</strong></td>
-                </tr>
-                <tr>
-                  <td>CLASS</td>
-                  <td class="has-text-centered">2.641</td>
-                  <td class="has-text-centered">2.159</td>
-                  <td class="has-text-centered">1.041</td>
-                </tr>
-                
-                <tr style="background-color: #f0f0f0;">
-                  <td colspan="4"><strong>After Policy Training (Fine-Tuned)</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>VILA (Ours)</strong></td>
-                  <td class="has-text-centered"><strong>2.803</strong></td>
-                  <td class="has-text-centered"><strong>2.548</strong></td>
-                  <td class="has-text-centered"><strong>0.829</strong></td>
-                </tr>
-                <tr>
-                  <td>Vanilla</td>
-                  <td class="has-text-centered">2.707</td>
-                  <td class="has-text-centered">2.121</td>
-                  <td class="has-text-centered">1.445</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <br>
-
-        <h4 class="title is-5">Qualitative: UMAP Visualizations</h4>
-        <div class="content has-text-justified">
-          <p>
-            We visualize the embedding space using UMAP. 
+            We analyze the quality of learned representations using qualitative visualizations (UMAP).
             The <strong>View UMAP</strong> is colored by camera ID (to check invariance), and the <strong>Action UMAP</strong> is colored by ground-truth action clusters (to check dynamics structure).
           </p>
         </div>
 
         <h5 class="title is-6 has-text-centered">View Invariance (Colored by View ID)</h5>
-        <div class="columns is-centered">
+        <div class="columns is-centered is-vcentered">
           <div class="column is-5 has-text-centered">
             <img src="./static/images/umap_views_before.png" 
                  alt="View UMAP Before"
-                 style="border: 1px solid #eee;"
+                 style="border: 1px solid #eee; width: 100%;"
                  onerror="this.src='https://via.placeholder.com/400x300?text=View+UMAP+(Before)';">
-            <p>Before Policy Training</p> 
+            <p>Before Policy Training</p>
           </div>
           <div class="column is-5 has-text-centered">
             <img src="./static/images/umap_views_after.png" 
                  alt="View UMAP After"
-                 style="border: 1px solid #eee;"
+                 style="border: 1px solid #eee; width: 100%;"
                  onerror="this.src='https://via.placeholder.com/400x300?text=View+UMAP+(After)';">
             <p>After Policy Training</p>
           </div>
@@ -383,18 +361,18 @@
         </p>
 
         <h5 class="title is-6 has-text-centered">Action Semantics (Colored by Action Cluster)</h5>
-        <div class="columns is-centered">
+        <div class="columns is-centered is-vcentered">
           <div class="column is-5 has-text-centered">
-            <img src="./static/images/lift_act_umap_before.png" 
+            <img src="./static/images/umap_action_before.png" 
                  alt="Action UMAP Before"
-                 style="border: 1px solid #eee;"
+                 style="border: 1px solid #eee; width: 100%;"
                  onerror="this.src='https://via.placeholder.com/400x300?text=Action+UMAP+(Before)';">
             <p>Before Policy Training</p>
           </div>
           <div class="column is-5 has-text-centered">
-            <img src="./static/images/lift_act_umap_after.png" 
+            <img src="./static/images/umap_action_after.png" 
                  alt="Action UMAP After"
-                 style="border: 1px solid #eee;"
+                 style="border: 1px solid #eee; width: 100%;"
                  onerror="this.src='https://via.placeholder.com/400x300?text=Action+UMAP+(After)';">
             <p>After Policy Training</p>
           </div>
@@ -409,30 +387,13 @@
 </section>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Conclusion</h2>
-        <div class="content has-text-justified">
-          <p>
-            We introduced VILA, a pre-training framework that enforces invariance on latent actions instead of scene-level visual features.
-            By aligning latent spaces with control dynamics, VILA achieves consistent gains in unseen-view generalization and data-efficient task adaptation.
-            This suggests that targeting invariance at the level of dynamics is a promising direction for robust visuomotor policies.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{jeong2026vila,
   author    = {Jeong, Youngjoon and Chun, Junha and Kim, Taesup},
   title     = {Learning to Act Robustly with View-Invariant Latent Actions},
+
 }</code></pre>
   </div>
 </section>
@@ -448,11 +409,6 @@
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
           <p>
             This website template was adapted from <a href="https://nerfies.github.io/">Nerfies</a>.
           </p>
