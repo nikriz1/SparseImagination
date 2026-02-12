@@ -1,6 +1,6 @@
-# Project Page: Learning to Act Robustly with View-Invariant Latent Actions (VILA)
+# Project Page: Sparse Imagination for Efficient Visual World Model Planning 
 
-This repository contains the source code for the project page of the paper **"Learning to Act Robustly with View-Invariant Latent Actions"**
+This repository contains the source code for the project page of the paper **"Sparse Imagination for Efficient Visual World Model Planning"**
 
 ## Citation
 
@@ -12,7 +12,7 @@ This website template is borrowed from [Nerfies](https://github.com/nerfies/nerf
 
 ```bibtex
 @article{jeong2026vila,
-  author    = {Jeong, Youngjoon and Chun, Junha and Kim, Taesup},
-  title     = {Learning to Act Robustly with View-Invariant Latent Actions},
+  author    = {Chun, Junha and Jeong, Youngjoon and Kim, Taesup},
+  title     = {Sparse Imagination for Efficient Visual World Model Planning},
 }
 
