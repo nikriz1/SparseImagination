@@ -11,7 +11,7 @@ If you find our work useful for your research, please cite:
 This website template is borrowed from [Nerfies](https://github.com/nerfies/nerfies.github.io). 
 
 ```bibtex
-@article{jeong2026vila,
+@article{chun2026sparseimagination,
   author    = {Chun, Junha and Jeong, Youngjoon and Kim, Taesup},
   title     = {Sparse Imagination for Efficient Visual World Model Planning},
 }
